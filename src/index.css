@@ -1,0 +1,12 @@
+@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+
+body {
+    background: #111;
+    color: #aaffaa;
+    font-family: "VT323", monospace, Consolas, "Courier New", monospace;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

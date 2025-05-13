@@ -1,0 +1,80 @@
+.character-create-box {
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid #aaffaa;
+    padding: 32px 48px;
+    box-shadow: 0 0 24px #222;
+    min-width: 480px;
+    max-width: 700px;
+    text-align: center;
+}
+
+.character-create-title {
+    font-size: 2.2rem;
+    color: #fff;
+    letter-spacing: 4px;
+    margin-bottom: 24px;
+    text-shadow: 0 0 6px #aaffaa, 0 0 2px #fff;
+}
+
+.character-create-box input,
+.character-create-box select {
+    font-family: inherit;
+    font-size: 1.2rem;
+    padding: 6px 12px;
+    margin: 10px 0;
+    background: #222;
+    border: 1px solid #aaffaa;
+    color: #aaffaa;
+    border-radius: 4px;
+    outline: none;
+    width: 70%;
+    text-align: center;
+    letter-spacing: 1px;
+    transition: border 0.2s;
+}
+
+.character-create-box input:focus,
+.character-create-box select:focus {
+    border: 2px solid #fff;
+}
+
+.job-select-container {
+    margin-top: 12px;
+    font-size: 1rem;
+    color: #aaffaa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.create-btn {
+    margin-top: 18px;
+    font-family: inherit;
+    font-size: 1.2rem;
+    background: #222;
+    color: #fff;
+    border: 2px solid #aaffaa;
+    padding: 8px 36px;
+    border-radius: 6px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    transition: background 0.2s, color 0.2s;
+}
+
+.create-btn:hover {
+    background: #aaffaa;
+    color: #111;
+}
+
+.character-hint {
+    font-size: 1rem;
+    color: #888;
+    margin-top: 10px;
+    letter-spacing: 1px;
+}
+
+.error {
+    color: #ff5555;
+    margin-top: 12px;
+    font-size: 1.1rem;
+}
