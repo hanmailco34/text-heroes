@@ -18,6 +18,7 @@ const useCharacterStore = create<CharacterStore>()(
             name: null,
             job: null,
             status: { ...defaultStatus },
+            point: 0,
             level: 1,
             gold: 0,
             hp: 0,
@@ -55,6 +56,7 @@ const useCharacterStore = create<CharacterStore>()(
                     name: null,
                     job: null,
                     status: { ...defaultStatus },
+                    point: 0,
                     level: 1,
                     gold: 0,
                     exp: 0,
@@ -64,6 +66,9 @@ const useCharacterStore = create<CharacterStore>()(
             updateCharacterStatus: (data) => {
                 const state = get();
                 const newStatus = { ...state.status };
+                const statusPoint = state.point;
+                let totalIncrease = 0;
+
                 for (const key in data) {
                     const statKey = key as keyof Status;
                     const current = state.status[statKey];
@@ -73,10 +78,32 @@ const useCharacterStore = create<CharacterStore>()(
                         typeof current === "number" &&
                         typeof change === "number"
                     ) {
+                        if (change < 0) {
+                            throw new Error(
+                                "스탯은 음수로 감소시킬 수 없습니다."
+                            );
+                        }
+                        totalIncrease += change;
                         newStatus[statKey] = current + change;
                     }
                 }
-                set({ status: newStatus });
+
+                if (statusPoint < totalIncrease) {
+                    throw new Error("스탯 포인트가 부족합니다.");
+                }
+
+                set({
+                    status: newStatus,
+                    point: statusPoint - totalIncrease,
+                });
+            },
+            getStat: () => {
+                const state = get();
+                return {
+                    str: state.status.str,
+                    int: state.status.int,
+                    dex: state.status.dex,
+                };
             },
         }),
         {
@@ -85,6 +112,7 @@ const useCharacterStore = create<CharacterStore>()(
                 name: state.name,
                 job: state.job,
                 status: state.status,
+                point: state.point,
                 level: state.level,
                 gold: state.gold,
                 hp: state.hp,

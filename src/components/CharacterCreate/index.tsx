@@ -50,6 +50,7 @@ const CharacterCreate: React.FC = () => {
             exp: 0,
             maxExp: 100,
             gold: 0,
+            point: 1,
         });
         toast({
             type: "success",

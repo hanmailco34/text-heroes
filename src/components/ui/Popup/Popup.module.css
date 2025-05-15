@@ -1,0 +1,40 @@
+.popup_overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(20, 28, 24, 0.85);
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.popup_content {
+    background: #181f1b;
+    border: 2px solid #aaffaa;
+    border-radius: 12px;
+    box-shadow: 0 2px 16px #222a;
+    font-family: "VT323", monospace;
+    color: #aaffaa;
+    padding: 30px 34px 24px 34px;
+    min-width: 320px;
+    text-align: center;
+    position: relative;
+}
+
+.popup_close_button {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.4rem;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.popup_close_button:hover {
+    color: #ffd93d;
+}

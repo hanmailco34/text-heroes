@@ -1,11 +1,14 @@
 export type Job = "warrior" | "mage" | "archer";
 
-export interface Status {
-    maxhp: number;
-    maxmp: number;
+export interface Stat {
     str: number;
     dex: number;
     int: number;
+}
+
+export interface Status extends Stat {
+    maxhp: number;
+    maxmp: number;
     atk: number;
     def: number;
 }
@@ -14,6 +17,7 @@ export interface CharacterState {
     name: string | null;
     job: Job | null;
     status: Status;
+    point: number;
     level: number;
     gold: number;
     hp: number;
@@ -30,6 +34,7 @@ export interface CharacterStore extends CharacterState {
     ) => void;
     resetCharacter: () => void;
     updateCharacterStatus: (data: Partial<Status>) => void;
+    getStat: () => Stat;
 }
 
 export interface Description {

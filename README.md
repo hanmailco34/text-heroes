@@ -1,54 +1,29 @@
-# React + TypeScript + Vite
+# 텍스트 히어로즈 (Text Heroes) - 레트로 스타일 텍스트 RPG
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![텍스트 히어로즈 로고](./assets/logo.png)
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 프로젝트 개요
 
-## Expanding the ESLint configuration
+텍스트 히어로즈는 레트로 감성을 살린 텍스트 기반 RPG 게임입니다.  
+플레이어는 전사, 마법사, 궁수 중 하나를 선택해 모험을 떠나며,  
+레벨업과 스탯 분배, 다양한 스킬과 던전 탐험을 즐길 수 있습니다.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+-   직관적인 텍스트 UI와 레트로 도트 그래픽
+-   직업별 고유 서사와 특징
+-   경험치 기반 레벨업 및 자유로운 스탯 분배 시스템
+-   팝업 UI를 통한 몰입감 있는 인터랙션
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+---
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 주요 기능
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+-   **캐릭터 생성 및 직업 선택**: 전사, 마법사, 궁수 각기 다른 특성 제공
+-   **레벨업 시스템**: 경험치 획득 후 레벨 상승, 스탯 분배 팝업 UI 지원
+-   **스탯 분배**: 힘, 민첩, 지능, 공격력, 방어력 자유 분배 가능
+-   **팝업 UI**: 레벨업, 스탯 분배, 알림 등 다양한 상황에 팝업 인터페이스 적용
+-   **저장 및 복원**: Zustand persist 미들웨어로 캐릭터 상태 자동 저장 및 복원
+-   **레트로 감성 UI/UX**: 픽셀 폰트, 컬러 팔레트, 텍스트 바 등 레트로 스타일 구현
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+---

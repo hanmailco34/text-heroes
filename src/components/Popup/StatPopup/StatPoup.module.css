@@ -1,0 +1,77 @@
+.stat_popup_title {
+    color: #ffd93d;
+    margin-bottom: 12px;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+}
+
+.stat_remaining {
+    font-size: 1.1rem;
+    margin-bottom: 18px;
+    color: #fff;
+}
+.stat_list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 18px;
+}
+.stat_list li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 7px;
+    font-size: 1.12rem;
+}
+.stat_label {
+    width: 70px;
+    text-align: right;
+}
+.stat_value {
+    width: 32px;
+    text-align: center;
+    color: #fff;
+    font-weight: bold;
+}
+.stat_list button {
+    width: 28px;
+    height: 28px;
+    font-size: 1.1rem;
+    background: #222;
+    color: #aaffaa;
+    border: 1.5px solid #aaffaa;
+    border-radius: 5px;
+    margin: 0 2px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.stat_list button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+.stat_popup_btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 10px;
+}
+.stat_popup_btns button {
+    font-family: inherit;
+    font-size: 1.08rem;
+    padding: 7px 18px;
+    border-radius: 7px;
+    background: #222;
+    color: #aaffaa;
+    border: 1.5px solid #aaffaa;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s;
+}
+.stat_popup_btns button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+.stat_popup_btns button:not(:disabled):hover {
+    background: #aaffaa;
+    color: #222;
+    border: 1.5px solid #ffd93d;
+}
