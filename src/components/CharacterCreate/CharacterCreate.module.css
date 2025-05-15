@@ -1,0 +1,14 @@
+.job_select_container {
+    margin-top: 12px;
+    font-size: 1rem;
+    color: #aaffaa;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.statsPreviewWrapper {
+    min-height: 340px;
+    margin-top: 12px;
+    transition: all 0.3s ease;
+}

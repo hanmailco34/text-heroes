@@ -1,0 +1,28 @@
+.main-log {
+    background: #181f1b;
+    border: 1.5px solid #aaffaa;
+    border-radius: 7px;
+    padding: 14px 20px;
+    min-height: 80px;
+    font-size: 1.1rem;
+    margin-top: 12px;
+}
+
+.log-title {
+    color: #ffd93d;
+    font-size: 1rem;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.main-log ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-log li {
+    margin-bottom: 2px;
+    color: #aaffaa;
+    word-break: keep-all;
+}

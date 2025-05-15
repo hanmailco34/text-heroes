@@ -1,0 +1,32 @@
+.statList {
+    margin-top: 8px;
+}
+
+.statItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px;
+    font-size: 1.05rem;
+}
+
+.statLabel {
+    width: 64px;
+    text-align: right;
+    margin-right: 7px;
+    font-weight: bold;
+}
+
+.statBar {
+    font-family: monospace;
+    letter-spacing: 1px;
+    display: inline-block;
+    width: 120px; /* 고정 너비로 레이아웃 안정화 */
+}
+
+.statValue {
+    width: 22px;
+    text-align: right;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 2px #222;
+}

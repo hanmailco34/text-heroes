@@ -1,0 +1,61 @@
+.main_menu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 18px;
+    margin: 28px 0 22px 0;
+}
+
+.main_menu .menu_btn {
+    font-family: "VT323", monospace;
+    font-size: 1.25rem;
+    background: #181f1b;
+    color: #aaffaa;
+    border: 2.5px solid #aaffaa;
+    border-radius: 10px;
+    padding: 16px 38px;
+    margin: 0 4px 10px 4px;
+    cursor: pointer;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 10px #222a, 0 0 8px #aaffaa44;
+    transition: background 0.18s, color 0.18s, border 0.18s, box-shadow 0.18s,
+        transform 0.09s;
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.main_menu .menu_btn::before {
+    /* 네온 효과 강조용 가상 요소 */
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 10px;
+    box-shadow: 0 0 18px 3px #aaffaa44, 0 0 4px 1px #fff1;
+    opacity: 0.6;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.main_menu .menu_btn:hover,
+.main_menu .menu_btn:focus {
+    background: #aaffaa;
+    color: #181f1b;
+    border: 2.5px solid #fff;
+    box-shadow: 0 0 20px 4px #aaffaa99, 0 2px 14px #222a;
+    transform: translateY(-2px) scale(1.04);
+}
+
+.main_menu .menu_btn:active {
+    background: #1a2c1a;
+    color: #aaffaa;
+    border: 2.5px solid #ffd93d;
+    box-shadow: 0 0 4px 0 #ffd93dbb, 0 1px 2px #222a;
+    transform: translateY(2px) scale(0.98);
+}
+
+.main_menu .menu_btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+}

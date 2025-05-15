@@ -1,0 +1,16 @@
+.select {
+    font-family: inherit;
+    font-size: 1.2rem;
+    padding: 6px 12px;
+    margin: 8px 0;
+    background: #222;
+    border: 1px solid #aaffaa;
+    color: #aaffaa;
+    border-radius: 4px;
+    outline: none;
+    text-align: center;
+    letter-spacing: 1px;
+    width: 70%;
+    transition: border 0.2s;
+    cursor: pointer;
+}

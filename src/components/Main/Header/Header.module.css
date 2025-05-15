@@ -1,0 +1,108 @@
+.main_header {
+    border-bottom: 2.5px double #aaffaa;
+    background: linear-gradient(180deg, #181f1b 90%, #111 100%);
+    padding: 24px 0 18px 0;
+    margin-bottom: 24px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 10px #222a, 0 0.5px 0 #aaffaa inset;
+}
+
+.main_title {
+    font-family: "VT323", monospace;
+    font-size: 2.8rem;
+    color: #fff;
+    letter-spacing: 6px;
+    margin-bottom: 10px;
+    text-shadow: 0 0 10px #aaffaa, 0 0 2px #fff, 2px 2px 0 #222;
+    text-transform: uppercase;
+    line-height: 1;
+}
+
+.main_charinfo {
+    font-family: "VT323", monospace;
+    font-size: 1.35rem;
+    color: #ffd93d;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+    text-shadow: 0 0 3px #aaffaa;
+}
+
+.main_stats {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    font-size: 1.13rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    font-family: "VT323", monospace;
+}
+
+.main_stats span {
+    background: #222;
+    border: 1.5px solid #aaffaa;
+    border-radius: 5px;
+    padding: 3px 16px 2px 16px;
+    margin: 0 2px;
+    box-shadow: 0 1px 4px #111a;
+    display: flex;
+    align-items: center;
+    min-width: 80px;
+    justify-content: center;
+    font-size: 1.08rem;
+}
+
+.main_stats .stat_hp {
+    color: #4d96ff;
+    font-weight: bold;
+}
+
+.main_stats .stat_mp {
+    color: #9b59b6;
+    font-weight: bold;
+}
+
+.main_stats .stat_gold {
+    color: #ffd93d;
+    font-weight: bold;
+}
+
+/*
+.main-substats {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 8px;
+  font-size: 1.05rem;
+  font-family: 'VT323', monospace;
+}
+.stat-str { color: #FF6B6B; }
+.stat-dex { color: #FFD93D; }
+.stat-int { color: #6BCB77; }
+.stat-atk { color: #E67E22; }
+.stat-def { color: #34495E; }
+.main-substats span {
+  background: #222;
+  border: 1.5px solid #aaffaa;
+  border-radius: 5px;
+  padding: 3px 12px 2px 12px;
+  box-shadow: 0 1px 4px #111a;
+  min-width: 70px;
+  text-align: center;
+}
+
+<div className="main-stats">
+  <span className="stat-hp">HP: <b>30</b> / 40</span>
+  <span className="stat-mp">MP: <b>12</b> / 18</span>
+  <span className="stat-gold">GOLD: <b>120</b></span>
+  <span className="stat-exp">EXP: <b>85</b> / 120</span>
+</div>
+<div className="main-substats">
+  <span className="stat-str">힘: <b>8</b></span>
+  <span className="stat-dex">민첩: <b>5</b></span>
+  <span className="stat-int">지능: <b>2</b></span>
+  <span className="stat-atk">공격력: <b>12</b></span>
+  <span className="stat-def">방어력: <b>8</b></span>
+</div>
+
+*/

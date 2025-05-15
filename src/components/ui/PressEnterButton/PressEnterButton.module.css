@@ -1,0 +1,29 @@
+.pressEnter {
+    color: #fff;
+    background: #222;
+    display: inline-block;
+    padding: 6px 24px;
+    border-radius: 6px;
+    margin-top: 28px;
+    font-size: 1.3rem;
+    letter-spacing: 2px;
+    border: 1px solid #aaffaa;
+    animation: blink 1.2s steps(1) infinite;
+    cursor: pointer;
+}
+
+.pressEnter:focus {
+    outline: none;
+    border-color: #fff;
+}
+
+@keyframes blink {
+    0%,
+    70% {
+        opacity: 1;
+    }
+    71%,
+    100% {
+        opacity: 0.2;
+    }
+}
