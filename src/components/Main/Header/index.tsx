@@ -1,7 +1,7 @@
-import type { Character } from "@/types/character";
+import type { CharacterState } from "@/types/character";
 import headerStyles from "./Header.module.css";
 
-const Header: React.FC<{ character: Character }> = ({ character }) => {
+const Header: React.FC<{ character: CharacterState }> = ({ character }) => {
     return (
         <div className={headerStyles.main_header}>
             <div className={headerStyles.main_title}>TEXT HEROES</div>

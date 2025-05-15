@@ -6,12 +6,13 @@ import InputField from "@/components/ui/InputField";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "@/store/authStore";
 import { useToast } from "@/components/ui/Toast";
+import useCharacterStore from "@/store/characterStore";
 
 const Login: React.FC = () => {
     const [userId, setUserId] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
-    const { login, hasCharacter } = useAuthStore();
+    const { login } = useAuthStore();
     const toast = useToast();
 
     const handleSignUpClick = () => {
@@ -33,6 +34,7 @@ const Login: React.FC = () => {
             return;
         }
         login(userId);
+        const hasCharacter = useCharacterStore.getState().hasCharacter;
 
         if (hasCharacter) navigate("/main");
         else navigate("/character-create");

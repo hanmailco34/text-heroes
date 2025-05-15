@@ -5,7 +5,7 @@ import Header from "./Header";
 import Menu from "./Menu";
 import Log, { type LogMessage } from "./Log";
 import useCharacterStore from "@/store/characterStore";
-import type { Character } from "@/types/character";
+import type { CharacterState } from "@/types/character";
 
 const MENU_LABELS: Record<string, string> = {
     explore: "탐험하기",
@@ -25,7 +25,7 @@ const INIT_LOGS: LogMessage[] = [
 
 const Main: React.FC = () => {
     const [logs, setLogs] = useState(INIT_LOGS);
-    const character: Character = useCharacterStore.getState();
+    const character: CharacterState = useCharacterStore.getState();
 
     const handleMenuClick = (key: string) => {
         const label = MENU_LABELS[key];
@@ -33,7 +33,6 @@ const Main: React.FC = () => {
             message: `[${label}] 메뉴를 선택했습니다.`,
             type: key === "logout" ? "warning" : undefined,
         };
-
         setLogs((prev) => [...prev.slice(-4), newLog]);
     };
 

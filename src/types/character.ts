@@ -10,7 +10,7 @@ export interface Status {
     def: number;
 }
 
-export interface Character {
+export interface CharacterState {
     name: string | null;
     job: Job | null;
     status: Status;
@@ -21,10 +21,15 @@ export interface Character {
     exp: number;
     maxExp: number;
     hasCharacter: boolean;
-    setCharacterInfo: (
-        data: Partial<Omit<Character, "setCharacterInfo" | "resetCharacter">>
+}
+
+export interface CharacterStore extends CharacterState {
+    setCharacterInfo: (data: Partial<CharacterState>) => void;
+    updateCharacter: (
+        data: Partial<Pick<CharacterState, "hp" | "mp" | "gold" | "exp">>
     ) => void;
     resetCharacter: () => void;
+    updateCharacterStatus: (data: Partial<Status>) => void;
 }
 
 export interface Description {
