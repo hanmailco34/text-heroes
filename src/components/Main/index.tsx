@@ -7,16 +7,7 @@ import Log, { type LogMessage } from "./Log";
 import useCharacterStore from "@/store/characterStore";
 import type { CharacterStore } from "@/types/character";
 import StatPoup from "../Popup/StatPopup";
-
-const MENU_LABELS: Record<string, string> = {
-    explore: "탐험하기",
-    inventory: "인벤토리",
-    shop: "상점",
-    rest: "휴식",
-    save: "저장",
-    settings: "설정",
-    logout: "로그아웃",
-};
+import { MENU_LABELS } from "@/data/mainData";
 
 const INIT_LOGS: LogMessage[] = [
     { message: "마을 광장에 도착했습니다." },
@@ -28,13 +19,22 @@ const Main: React.FC = () => {
     const [logs, setLogs] = useState(INIT_LOGS);
     const [showPopup, setShowPopup] = useState(false);
     const character: CharacterStore = useCharacterStore.getState();
+    const { levelUp } = useCharacterStore();
 
     const handleMenuClick = (key: string) => {
         const label = MENU_LABELS[key];
         const newLog: LogMessage = {
             message: `[${label}] 메뉴를 선택했습니다.`,
-            type: key === "logout" ? "warning" : undefined,
+            type:
+                key === "logout"
+                    ? "warning"
+                    : key === "levelup"
+                    ? "important"
+                    : undefined,
         };
+        if (key === "levelup") {
+            levelUp();
+        }
         setShowPopup(true);
         setLogs((prev) => [...prev.slice(-4), newLog]);
     };

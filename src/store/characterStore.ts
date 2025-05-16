@@ -1,3 +1,4 @@
+import { LEVEL_UP_STAT_POINTS } from "@/data/statData";
 import type { CharacterStore, Status } from "@/types/character";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
@@ -104,6 +105,13 @@ const useCharacterStore = create<CharacterStore>()(
                     int: state.status.int,
                     dex: state.status.dex,
                 };
+            },
+            levelUp: () => {
+                const state = get();
+                set({
+                    level: state.level + 1,
+                    point: state.point + LEVEL_UP_STAT_POINTS,
+                });
             },
         }),
         {

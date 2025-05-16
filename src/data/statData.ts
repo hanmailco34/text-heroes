@@ -5,3 +5,5 @@ export const STAT_LABEL: Record<keyof Stat, string> = {
     int: "지능",
     dex: "민첩",
 };
+
+export const LEVEL_UP_STAT_POINTS: number = 5;

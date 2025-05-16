@@ -1,4 +1,5 @@
 export type Job = "warrior" | "mage" | "archer";
+export type StatType = "str" | "dex" | "int";
 
 export interface Stat {
     str: number;
@@ -35,6 +36,7 @@ export interface CharacterStore extends CharacterState {
     resetCharacter: () => void;
     updateCharacterStatus: (data: Partial<Status>) => void;
     getStat: () => Stat;
+    levelUp: () => void;
 }
 
 export interface Description {
