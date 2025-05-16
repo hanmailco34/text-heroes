@@ -1,29 +1,48 @@
 import React from "react";
 import styles from "./CharacterStatsPreview.module.css";
-import type { Description, Job, Status } from "@/types/character";
-import { JOB_DESC } from "@/data/jobData";
 import StatBarList from "../ui/StatBarList";
+import type { CombatStats, Job, Stat, Vitals } from "@/types/CharacterTypes";
+import { JOB_METADATA } from "@/data/JobData";
 
-const CharacterStatsPreview: React.FC<{ job: Job | ""; status: Status }> = ({
+interface CharacterStatsPreviewProps {
+    job: Job | null;
+    stats: Stat | null | undefined;
+    vitals: Vitals | null | undefined;
+    combat: CombatStats | null | undefined;
+}
+
+const CharacterStatsPreview: React.FC<CharacterStatsPreviewProps> = ({
     job,
-    status,
+    stats,
+    vitals,
+    combat,
 }) => {
-    if (!job) return;
-    const jobDesc: Description = JOB_DESC[job];
+    if (!job || !stats || !vitals || !combat) {
+        return (
+            <div className={styles.preview}>
+                직업을 선택하면 능력치가 표시됩니다.
+            </div>
+        );
+    }
+    const { label, lore, features } = JOB_METADATA[job];
 
     return (
         <div className={styles.stats_preview_container}>
-            <div className={styles.job_name}>{jobDesc?.label}</div>
-            <div className={styles.job_lore}>{jobDesc?.lore}</div>
+            <div className={styles.job_name}>{label}</div>
+            <div className={styles.job_lore}>{lore}</div>
             <div className={styles.job_features}>
                 <b>[특징]</b>
                 <ul>
-                    {jobDesc.features.map((e) => (
+                    {features.map((e) => (
                         <li>{e}</li>
                     ))}
                 </ul>
             </div>
-            <StatBarList status={status}></StatBarList>
+            <StatBarList
+                stats={stats}
+                vitals={vitals}
+                combat={combat}
+            ></StatBarList>
         </div>
     );
 };

@@ -1,9 +1,9 @@
-import type { Status } from "@/types/character";
 import type { IStatBar } from "@/types/statBar";
 import StarBar from "../StarBar";
 import styles from "./StatBarList.module.css";
+import type { Stat } from "@/types/CharacterTypes";
 
-const StatBarList: React.FC<{ status: Status }> = ({ status }) => {
+const StatBarList: React.FC<{ status: Stat }> = ({ status }) => {
     const getStatBarData = (status: Status): IStatBar[] => [
         { label: "힘", value: status.str, max: 15 },
         { label: "민첩", value: status.dex, max: 15 },

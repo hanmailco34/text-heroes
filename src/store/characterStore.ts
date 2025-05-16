@@ -1,116 +1,126 @@
-import { LEVEL_UP_STAT_POINTS } from "@/data/statData";
-import type { CharacterStore, Status } from "@/types/character";
+import { INITIAL_STATE } from "@/data/CharacterData";
+
+import {
+    STAT_TYPES,
+    type CharacterStore,
+    type StatType,
+} from "@/types/CharacterTypes";
+import { assertNonNegative } from "@/types/NonNegative";
+import {
+    calculateCombatStats,
+    clampValue,
+    updateResource,
+    updateResources,
+} from "@/utils/CharacterUtils";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 
-const defaultStatus: Status = {
-    maxhp: 0,
-    maxmp: 0,
-    str: 0,
-    dex: 0,
-    int: 0,
-    atk: 0,
-    def: 0,
-};
+// 상수 정의
+const LEVEL_UP_STAT_POINTS = 5;
 
 const useCharacterStore = create<CharacterStore>()(
     persist(
         (set, get) => ({
-            name: null,
-            job: null,
-            status: { ...defaultStatus },
-            point: 0,
-            level: 1,
-            gold: 0,
-            hp: 0,
-            mp: 0,
-            exp: 0,
-            maxExp: 0,
-            hasCharacter: false,
+            ...INITIAL_STATE,
             setCharacterInfo: (data) =>
+                set((state) => {
+                    const mergedStats = data.stats
+                        ? { ...state.stats, ...data.stats }
+                        : state.stats;
+                    return {
+                        ...state,
+                        ...data,
+                        stats: data.stats
+                            ? { ...state.stats, ...data.stats }
+                            : state.stats,
+                        vitals: data.vitals
+                            ? {
+                                  ...state.vitals,
+                                  ...data.vitals,
+                                  hp: clampValue(
+                                      data.vitals.hp ?? state.vitals.hp,
+                                      0,
+                                      state.vitals.maxhp
+                                  ),
+                                  mp: clampValue(
+                                      data.vitals.mp ?? state.vitals.mp,
+                                      0,
+                                      state.vitals.maxmp
+                                  ),
+                              }
+                            : state.vitals,
+                        combat: state.job
+                            ? calculateCombatStats(state.job, mergedStats)
+                            : state.combat,
+                    };
+                }),
+            updateVitals: (data) =>
+                set((state) => ({
+                    vitals: {
+                        ...state.vitals,
+                        hp: updateResource(
+                            state.vitals,
+                            "hp",
+                            data.hp ?? 0,
+                            "maxhp"
+                        ),
+                        mp: updateResource(
+                            state.vitals,
+                            "mp",
+                            data.mp ?? 0,
+                            "maxmp"
+                        ),
+                    },
+                })),
+            updateResources: (data) =>
                 set((state) => ({
                     ...state,
-                    ...data,
-                    status: data.status
-                        ? { ...state.status, ...data.status }
-                        : state.status,
-                    hasCharacter: true,
+                    ...updateResources(state, data),
                 })),
-            updateCharacter: (data) => {
+            resetCharacter: () => set(() => ({ ...INITIAL_STATE })),
+            updateStats: (data) => {
                 const state = get();
-
-                set({
-                    hp: Math.min(
-                        Math.max(0, state.hp + (data.hp ?? 0)),
-                        state.status.maxhp
-                    ),
-                    mp: Math.min(
-                        Math.max(0, state.mp + (data.mp ?? 0)),
-                        state.status.maxmp
-                    ),
-                    gold: Math.max(0, state.gold + (data.gold ?? 0)),
-                    exp: Math.max(0, state.exp + (data.exp ?? 0)),
-                });
-            },
-            resetCharacter: () =>
-                set({
-                    name: null,
-                    job: null,
-                    status: { ...defaultStatus },
-                    point: 0,
-                    level: 1,
-                    gold: 0,
-                    exp: 0,
-                    maxExp: 100,
-                    hasCharacter: false,
-                }),
-            updateCharacterStatus: (data) => {
-                const state = get();
-                const newStatus = { ...state.status };
-                const statusPoint = state.point;
+                const newStats = { ...state.stats };
                 let totalIncrease = 0;
 
                 for (const key in data) {
-                    const statKey = key as keyof Status;
-                    const current = state.status[statKey];
-                    const change = data[statKey];
-
-                    if (
-                        typeof current === "number" &&
-                        typeof change === "number"
-                    ) {
-                        if (change < 0) {
+                    const statKey = key as StatType;
+                    if (statKey in STAT_TYPES) {
+                        const change = data[statKey];
+                        if (typeof change === "number" && change < 0) {
                             throw new Error(
                                 "스탯은 음수로 감소시킬 수 없습니다."
                             );
                         }
-                        totalIncrease += change;
-                        newStatus[statKey] = current + change;
+                        totalIncrease += change ?? 0;
+                        newStats[statKey] = assertNonNegative(
+                            (newStats[statKey] ?? 0) + (change ?? 0)
+                        );
                     }
                 }
 
-                if (statusPoint < totalIncrease) {
+                if (state.statPoints < totalIncrease) {
                     throw new Error("스탯 포인트가 부족합니다.");
                 }
 
                 set({
-                    status: newStatus,
-                    point: statusPoint - totalIncrease,
+                    stats: newStats,
+                    statPoints: state.statPoints - totalIncrease,
+                    combat: state.job
+                        ? calculateCombatStats(state.job, newStats)
+                        : state.combat,
                 });
             },
             getStat: () => {
                 const state = get();
-                return {
-                    str: state.status.str,
-                    int: state.status.int,
-                    dex: state.status.dex,
-                };
+                return { ...state.stats };
             },
             levelUp: () => {
                 const state = get();
                 set({
                     level: state.level + 1,
-                    point: state.point + LEVEL_UP_STAT_POINTS,
+                    statPoints: state.statPoints + LEVEL_UP_STAT_POINTS,
+                    exp: { current: 0, max: state.exp.max + 50 },
                 });
             },
         }),
@@ -119,15 +129,14 @@ const useCharacterStore = create<CharacterStore>()(
             partialize: (state) => ({
                 name: state.name,
                 job: state.job,
-                status: state.status,
-                point: state.point,
+                stats: state.stats,
+                vitals: state.vitals,
+                combat: state.combat,
+                statPoints: state.statPoints,
                 level: state.level,
                 gold: state.gold,
-                hp: state.hp,
-                mp: state.mp,
                 exp: state.exp,
-                maxExp: state.maxExp,
-                hasCharacter: state.hasCharacter,
+                maxExp: state.exp.max,
             }),
         }
     )

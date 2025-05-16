@@ -1,5 +1,4 @@
-// src/components/CharacterCreate.tsx
-import React, { useState } from "react";
+import { useMemo, useState } from "react";
 import styles from "@/styles/Container.module.css";
 import charStyles from "./CharacterCreate.module.css";
 import InputField from "@/components/ui/InputField";
@@ -9,27 +8,42 @@ import useAuthStore from "@/store/authStore";
 import { useNavigate } from "react-router-dom";
 import SelectBox from "@/components/ui/SelectBox";
 import CharacterStatsPreview from "./CharacterStatsPreview";
-import type { Job } from "@/types/character";
 import useCharacterStore from "@/store/characterStore";
-import { JOB_OPTION, getInitialStatusByJob } from "@/data/jobData";
+import { JOB_METADATA, JOB_OPTIONS } from "@/data/JobData";
+import type { CharacterState, Job } from "@/types/CharacterTypes";
+import { calculateCombatStats } from "@/utils/CharacterUtils";
 
 const CharacterCreate: React.FC = () => {
     const { userId } = useAuthStore();
     const { setCharacterInfo } = useCharacterStore();
     const [name, setName] = useState("");
-    const [job, setJob] = useState<Job | "">("");
+    const [job, setJob] = useState<Job | null>(null);
     const navigate = useNavigate();
     const toast = useToast();
 
-    const jobStatus = getInitialStatusByJob(job);
+    const jobData = useMemo(() => {
+        if (!job) return null;
+        const metadata = JOB_METADATA[job];
+        const combat = calculateCombatStats(job, metadata.initialStats);
+        return {
+            stats: metadata.initialStats,
+            vitals: {
+                hp: metadata.initialVitals.maxhp,
+                maxhp: metadata.initialVitals.maxhp,
+                mp: metadata.initialVitals.maxmp,
+                maxmp: metadata.initialVitals.maxmp,
+            },
+            combat,
+        };
+    }, [job]);
 
-    const handleSubmit = () => {
+    const validateInput = (): boolean => {
         if (!name || name.length < 2) {
             toast({
                 type: "error",
                 text: "캐릭터 이름은 2자 이상이어야 합니다.",
             });
-            return;
+            return false;
         }
 
         if (!job) {
@@ -37,27 +51,39 @@ const CharacterCreate: React.FC = () => {
                 type: "warning",
                 text: "직업을 선택해주세요.",
             });
-            return;
+            return false;
         }
 
-        setCharacterInfo({
+        return true;
+    };
+
+    const createCharacter = () => {
+        if (!job || !jobData) return;
+
+        const characterData: Partial<CharacterState> = {
             name,
             job,
-            status: jobStatus,
-            hp: jobStatus.maxhp,
-            mp: jobStatus.maxmp,
+            stats: jobData.stats,
+            vitals: jobData.vitals,
+            combat: jobData.combat,
             level: 1,
-            exp: 0,
-            maxExp: 100,
+            statPoints: 1,
+            exp: { current: 0, max: 100 },
             gold: 0,
-            point: 1,
-        });
+        };
+
+        setCharacterInfo(characterData);
         toast({
             type: "success",
-            text: `${name} (${job}) 캐릭터가 생성되었습니다!`,
+            text: `${name} (${JOB_METADATA[job].label}) 캐릭터가 생성되었습니다!`,
         });
-
         navigate("/main");
+    };
+
+    const handleSubmit = () => {
+        if (validateInput()) {
+            createCharacter();
+        }
     };
 
     return (
@@ -77,17 +103,21 @@ const CharacterCreate: React.FC = () => {
                 <SelectBox
                     id="job"
                     value={job}
-                    onChange={(value) => setJob(value as Job | "")}
-                    options={JOB_OPTION}
+                    onChange={(value) =>
+                        setJob(value === "" ? null : (value as Job))
+                    }
+                    options={JOB_OPTIONS}
                     placeholder="-- 직업을 선택하세요 --"
                     required
                 ></SelectBox>
             </div>
-            <div>능력치 화면</div>
+            <div className={charStyles.statsPreviewLabel}>능력치 미리보기</div>
             <div className={charStyles.statsPreviewWrapper}>
                 <CharacterStatsPreview
                     job={job}
-                    status={jobStatus}
+                    stats={jobData?.stats}
+                    vitals={jobData?.vitals}
+                    combat={jobData?.combat}
                 ></CharacterStatsPreview>
             </div>
 
