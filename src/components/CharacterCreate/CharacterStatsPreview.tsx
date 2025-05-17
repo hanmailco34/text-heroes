@@ -1,8 +1,8 @@
-import React from "react";
-import styles from "./CharacterStatsPreview.module.css";
-import StatBarList from "../ui/StatBarList";
-import type { CombatStats, Job, Stat, Vitals } from "@/types/CharacterTypes";
-import { JOB_METADATA } from "@/data/JobData";
+import React from 'react';
+import styles from './CharacterStatsPreview.module.css';
+import StatBarList from '../ui/StatBarList';
+import type { CombatStats, Job, Stat, Vitals } from '@/types/characterTypes';
+import { JOB_METADATA } from '@/data/jobData';
 
 interface CharacterStatsPreviewProps {
     job: Job | null;
@@ -34,15 +34,14 @@ const CharacterStatsPreview: React.FC<CharacterStatsPreviewProps> = ({
                 <b>[특징]</b>
                 <ul>
                     {features.map((e) => (
-                        <li>{e}</li>
+                        <li key={e}>{e}</li>
                     ))}
                 </ul>
             </div>
             <StatBarList
                 stats={stats}
                 vitals={vitals}
-                combat={combat}
-            ></StatBarList>
+                combat={combat}></StatBarList>
         </div>
     );
 };

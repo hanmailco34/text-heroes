@@ -1,22 +1,22 @@
-import { useMemo, useState } from "react";
-import styles from "@/styles/Container.module.css";
-import charStyles from "./CharacterCreate.module.css";
-import InputField from "@/components/ui/InputField";
-import PressEnterButton from "@/components/ui/PressEnterButton";
-import { useToast } from "@/components/ui/Toast";
-import useAuthStore from "@/store/authStore";
-import { useNavigate } from "react-router-dom";
-import SelectBox from "@/components/ui/SelectBox";
-import CharacterStatsPreview from "./CharacterStatsPreview";
-import useCharacterStore from "@/store/characterStore";
-import { JOB_METADATA, JOB_OPTIONS } from "@/data/JobData";
-import type { CharacterState, Job } from "@/types/CharacterTypes";
-import { calculateCombatStats } from "@/utils/CharacterUtils";
+import { useMemo, useState } from 'react';
+import styles from '@/styles/Container.module.css';
+import charStyles from './CharacterCreate.module.css';
+import InputField from '@/components/ui/InputField';
+import PressEnterButton from '@/components/ui/PressEnterButton';
+import { useToast } from '@/components/ui/Toast';
+import useAuthStore from '@/store/authStore';
+import { useNavigate } from 'react-router-dom';
+import SelectBox from '@/components/ui/SelectBox';
+import CharacterStatsPreview from './CharacterStatsPreview';
+import useCharacterStore from '@/store/characterStore';
+import { JOB_METADATA, JOB_OPTIONS } from '@/data/jobData';
+import type { CharacterState, Job } from '@/types/characterTypes';
+import { calculateCombatStats } from '@/utils/characterUtils';
 
 const CharacterCreate: React.FC = () => {
     const { userId } = useAuthStore();
     const { setCharacterInfo } = useCharacterStore();
-    const [name, setName] = useState("");
+    const [name, setName] = useState('');
     const [job, setJob] = useState<Job | null>(null);
     const navigate = useNavigate();
     const toast = useToast();
@@ -40,16 +40,16 @@ const CharacterCreate: React.FC = () => {
     const validateInput = (): boolean => {
         if (!name || name.length < 2) {
             toast({
-                type: "error",
-                text: "캐릭터 이름은 2자 이상이어야 합니다.",
+                type: 'error',
+                text: '캐릭터 이름은 2자 이상이어야 합니다.',
             });
             return false;
         }
 
         if (!job) {
             toast({
-                type: "warning",
-                text: "직업을 선택해주세요.",
+                type: 'warning',
+                text: '직업을 선택해주세요.',
             });
             return false;
         }
@@ -74,10 +74,10 @@ const CharacterCreate: React.FC = () => {
 
         setCharacterInfo(characterData);
         toast({
-            type: "success",
+            type: 'success',
             text: `${name} (${JOB_METADATA[job].label}) 캐릭터가 생성되었습니다!`,
         });
-        navigate("/main");
+        navigate('/main');
     };
 
     const handleSubmit = () => {
@@ -104,12 +104,11 @@ const CharacterCreate: React.FC = () => {
                     id="job"
                     value={job}
                     onChange={(value) =>
-                        setJob(value === "" ? null : (value as Job))
+                        setJob(value === '' ? null : (value as Job))
                     }
                     options={JOB_OPTIONS}
                     placeholder="-- 직업을 선택하세요 --"
-                    required
-                ></SelectBox>
+                    required></SelectBox>
             </div>
             <div className={charStyles.statsPreviewLabel}>능력치 미리보기</div>
             <div className={charStyles.statsPreviewWrapper}>
@@ -117,8 +116,7 @@ const CharacterCreate: React.FC = () => {
                     job={job}
                     stats={jobData?.stats}
                     vitals={jobData?.vitals}
-                    combat={jobData?.combat}
-                ></CharacterStatsPreview>
+                    combat={jobData?.combat}></CharacterStatsPreview>
             </div>
 
             <PressEnterButton onClick={handleSubmit}>
