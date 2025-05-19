@@ -81,6 +81,7 @@ export interface CharacterState {
     level: number;
     gold: number;
     exp: { current: number; max: number };
+    currentVillage: string;
 }
 
 export interface CharacterStore extends CharacterState {
@@ -93,4 +94,5 @@ export interface CharacterStore extends CharacterState {
     updateStats: (data: Partial<Stat>) => void;
     getStat: () => Stat;
     levelUp: () => void;
+    setCurrentVillage: (villageId: string) => void;
 }

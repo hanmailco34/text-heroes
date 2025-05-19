@@ -1,0 +1,11 @@
+.story {
+    font-family: "VT323", "Pretendard", monospace;
+    font-size: 1.18rem;
+    padding: 32px 24px 24px 24px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    white-space: pre-line;
+    min-height: 160px;
+    letter-spacing: 1px;
+    line-height: 1.7;
+}

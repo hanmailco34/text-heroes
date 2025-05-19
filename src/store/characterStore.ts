@@ -124,6 +124,8 @@ const useCharacterStore = create<CharacterStore>()(
                     exp: { current: 0, max: state.exp.max + 50 },
                 });
             },
+            setCurrentVillage: (villageId) =>
+                set({ currentVillage: villageId }),
         }),
         {
             name: "character-storage",
@@ -137,7 +139,7 @@ const useCharacterStore = create<CharacterStore>()(
                 level: state.level,
                 gold: state.gold,
                 exp: state.exp,
-                maxExp: state.exp.max,
+                currentVillage: state.currentVillage,
             }),
         }
     )

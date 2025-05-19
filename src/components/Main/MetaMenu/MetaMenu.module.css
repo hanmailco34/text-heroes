@@ -1,0 +1,41 @@
+.metaMenu {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+    background: #181f1b;
+    border-top: 3px solid #ffd93d;
+    box-shadow: 0 -2px 12px #222a;
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    padding: 10px 0 8px 0;
+    font-family: "VT323", "Press Start 2P", monospace;
+}
+
+.metaMenu button {
+    background: #232a22;
+    color: #ffd93d;
+    border: 2px solid #ffd93d;
+    border-radius: 8px;
+    font-family: "VT323", "Press Start 2P", monospace;
+    font-size: 1.09rem;
+    padding: 8px 22px;
+    margin: 0 2px;
+    cursor: pointer;
+    letter-spacing: 1.2px;
+    box-shadow: 0 1px 6px #ffd93d33;
+    transition: background 0.13s, color 0.13s, border 0.13s;
+    outline: none;
+    position: relative;
+}
+
+.metaMenu button:hover,
+.metaMenu button:focus {
+    background: #ffd93d;
+    color: #232a22;
+    border-color: #ffd93d;
+    font-weight: bold;
+    box-shadow: 0 2px 12px #ffd93d66;
+}

@@ -1,0 +1,127 @@
+.villageContainer {
+    background: #181f1b;
+    color: #fffbe7;
+    font-family: "VT323", "Press Start 2P", "Pretendard", monospace;
+    border: 2.5px solid #ffd93d;
+    border-radius: 14px;
+    max-width: 520px;
+    margin: 40px auto;
+    padding: 28px 28px 20px 28px;
+    box-shadow: 0 2px 18px #222a;
+    letter-spacing: 1px;
+}
+
+.villageName {
+    font-size: 1.5rem;
+    color: #ffd93d;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 0.4rem;
+    text-shadow: 0 0 2px #ffd93d77;
+}
+
+.villageDescription {
+    font-size: 1.08rem;
+    color: #fffbe7;
+    background: #232a22;
+    border-radius: 8px;
+    padding: 10px 14px;
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    border: 1.5px solid #ffd93d44;
+}
+
+.tip {
+    font-style: italic;
+    color: #ffd93d;
+    background: #232a22;
+    border-radius: 6px;
+    padding: 6px 12px;
+    font-size: 1.01rem;
+    margin-bottom: 1.1rem;
+    border: 1.5px dashed #ffd93d;
+    text-align: center;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin: 18px 0 12px 0;
+    align-items: center;
+}
+
+.menu button {
+    font-family: "VT323", "Press Start 2P", monospace;
+    font-size: 1.13rem;
+    background: #ffd93d;
+    color: #181f1b;
+    border: 2px solid #ffd93d;
+    border-radius: 10px;
+    padding: 13px 32px;
+    min-width: 230px;
+    letter-spacing: 1.5px;
+    box-shadow: 0 2px 8px #ffd93d33;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s, box-shadow 0.12s;
+    outline: none;
+    position: relative;
+    text-align: left;
+}
+
+.menu button:hover,
+.menu button:focus {
+    background: #fffbe7;
+    color: #ffd93d;
+    border-color: #ffd93d;
+    font-weight: bold;
+    box-shadow: 0 4px 16px #ffd93d66;
+}
+
+.travel {
+    margin-top: 1.2rem;
+    background: #232a22;
+    border-radius: 8px;
+    padding: 10px 14px;
+    border: 1.5px solid #ffd93d44;
+    text-align: center;
+}
+
+.travel p {
+    color: #7ecfff;
+    font-size: 1.02rem;
+    margin-bottom: 0.6rem;
+    font-family: "VT323", monospace;
+}
+
+.travel button {
+    background: #232a22;
+    color: #ffd93d;
+    border: 1.5px solid #ffd93d;
+    border-radius: 8px;
+    font-family: "VT323", monospace;
+    font-size: 1.07rem;
+    padding: 8px 22px;
+    margin: 0 6px 6px 0;
+    cursor: pointer;
+    transition: background 0.12s, color 0.12s;
+}
+
+.travel button:hover,
+.travel button:focus {
+    background: #ffd93d;
+    color: #232a22;
+    font-weight: bold;
+}
+
+.message {
+    color: #ffd93d;
+    background: #232a22;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 1.04rem;
+    margin-top: 1.2rem;
+    border: 1.5px solid #ffd93d99;
+    text-align: center;
+}

@@ -3,8 +3,8 @@ import {
     STAT_TYPES,
     VITAL_TYPES,
     type CharacterState,
-} from '@/types/characterTypes';
-import { assertNonNegative } from '@/types/nonNegative';
+} from "@/types/characterTypes";
+import { assertNonNegative } from "@/types/nonNegative";
 
 // 초기 상태 정의
 export const INITIAL_STATE: CharacterState = {
@@ -30,4 +30,5 @@ export const INITIAL_STATE: CharacterState = {
     level: 1,
     gold: 0,
     exp: { current: 0, max: 100 },
+    currentVillage: "greenForest",
 };
