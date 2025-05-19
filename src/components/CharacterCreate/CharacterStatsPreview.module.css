@@ -24,7 +24,7 @@
 }
 
 .stats_preview_container .job_lore {
-    font-size: 1.05rem;
+    font-size: 0.9rem;
     color: #ffd93d;
     margin-bottom: 10px;
     min-height: 56px;
@@ -35,7 +35,6 @@
 .stats_preview_container .job_features {
     margin: 0 0 10px 0;
     padding: 0 0 0 16px;
-    font-size: 1.02rem;
     color: #aaffaa;
 }
 

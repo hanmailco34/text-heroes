@@ -1,4 +1,4 @@
-import type { CharacterState } from "@/types/character";
+import { type CharacterState, VITAL_TYPES } from "@/types/characterTypes";
 import headerStyles from "./Header.module.css";
 
 const Header: React.FC<{ character: CharacterState }> = ({ character }) => {
@@ -10,19 +10,25 @@ const Header: React.FC<{ character: CharacterState }> = ({ character }) => {
             </div>
             <div className={headerStyles.main_stats}>
                 <span>
-                    HP: <b className={headerStyles.stat_hp}>{character.hp}</b> /{" "}
-                    {character.status.maxhp}
+                    HP:{" "}
+                    <b className={headerStyles.stat_hp}>
+                        {character.vitals[VITAL_TYPES.HP]}
+                    </b>{" "}
+                    / {character.vitals[VITAL_TYPES.MAXHP]}
                 </span>
                 <span>
-                    MP: <b className={headerStyles.stat_mp}>{character.mp}</b> /{" "}
-                    {character.status.maxmp}
+                    MP:{" "}
+                    <b className={headerStyles.stat_mp}>
+                        {character.vitals[VITAL_TYPES.MP]}
+                    </b>{" "}
+                    / {character.vitals[VITAL_TYPES.MAXMP]}
                 </span>
                 <span>
                     GOLD:{" "}
                     <b className={headerStyles.stat_gold}>{character.gold}</b>
                 </span>
                 <span>
-                    EXP: <b>{character.exp}</b> / {character.maxExp}
+                    EXP: <b>{character.exp.current}</b> / {character.exp.max}
                 </span>
             </div>
         </div>

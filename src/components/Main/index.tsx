@@ -5,7 +5,7 @@ import Header from "./Header";
 import Menu from "./Menu";
 import Log, { type LogMessage } from "./Log";
 import useCharacterStore from "@/store/characterStore";
-import type { CharacterStore } from "@/types/character";
+import type { CharacterStore } from "@/types/characterTypes";
 import StatPoup from "../Popup/StatPopup";
 import { MENU_LABELS } from "@/data/mainData";
 

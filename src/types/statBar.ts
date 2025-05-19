@@ -1,8 +1,5 @@
-export interface IStarBar {
+export interface StatBarData {
+    label?: string;
     value: number;
     max: number;
-}
-
-export interface IStatBar extends IStarBar {
-    label: string;
 }

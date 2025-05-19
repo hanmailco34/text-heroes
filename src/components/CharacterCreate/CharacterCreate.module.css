@@ -7,6 +7,11 @@
     align-items: center;
 }
 
+.statsPreviewLabel {
+    font-size: 1.1rem;
+    margin-top: 16px;
+}
+
 .statsPreviewWrapper {
     min-height: 340px;
     margin-top: 12px;

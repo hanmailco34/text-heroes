@@ -3,7 +3,7 @@ import styles from "./SelectBox.module.css";
 
 interface SelectBoxProps {
     id?: string;
-    value: string;
+    value: string | null;
     onChange: (value: string) => void;
     options: { value: string; label: string }[];
     placeholder?: string;
@@ -20,6 +20,7 @@ const SelectBox: React.FC<SelectBoxProps> = ({
     required = false,
     className = "",
 }) => {
+    if (value === null) value = "";
     return (
         <select
             id={id}
