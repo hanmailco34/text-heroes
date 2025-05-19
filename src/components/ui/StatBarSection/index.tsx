@@ -1,5 +1,5 @@
-import StatBar from './StatBar';
-import styles from './StatBarSection.module.css';
+import StatBar from "./StatBar";
+import styles from "./StatBarSection.module.css";
 
 interface StatBarSectionProps {
     title?: string;
@@ -16,10 +16,10 @@ const StatBarSection: React.FC<StatBarSectionProps> = ({
 }) => {
     return (
         <div className={styles.section}>
-            {title && <h4 className={styles.sectionTitle}>{title}</h4>}
+            {title && <div className={styles.sectionTitle}>{title}</div>}
             {Object.entries(data).map(([key, value]) => {
                 const label = labels[key] ?? key;
-                const max = maxMap[key] ?? 100;
+                const max = maxMap[key] ?? 200;
 
                 return (
                     <div key={key} className={styles.statItem}>

@@ -1,8 +1,15 @@
-import React from 'react';
-import styles from './CharacterStatsPreview.module.css';
-import StatBarList from '../ui/StatBarList';
-import type { CombatStats, Job, Stat, Vitals } from '@/types/characterTypes';
-import { JOB_METADATA } from '@/data/jobData';
+import React from "react";
+import styles from "./CharacterStatsPreview.module.css";
+import StatBarList from "../ui/StatBarList";
+import {
+    VITAL_TYPES,
+    type CombatStats,
+    type Job,
+    type Stat,
+    type Vitals,
+    type VitalWithoutMax,
+} from "@/types/characterTypes";
+import { JOB_METADATA } from "@/data/jobData";
 
 interface CharacterStatsPreviewProps {
     job: Job | null;
@@ -26,6 +33,15 @@ const CharacterStatsPreview: React.FC<CharacterStatsPreviewProps> = ({
     }
     const { label, lore, features } = JOB_METADATA[job];
 
+    const omitMaxVitals = (vitals: Vitals): VitalWithoutMax => {
+        return Object.fromEntries(
+            Object.entries(vitals).filter(
+                ([key]) =>
+                    key !== VITAL_TYPES.MAXHP && key !== VITAL_TYPES.MAXMP
+            )
+        ) as VitalWithoutMax;
+    };
+
     return (
         <div className={styles.stats_preview_container}>
             <div className={styles.job_name}>{label}</div>
@@ -40,8 +56,9 @@ const CharacterStatsPreview: React.FC<CharacterStatsPreviewProps> = ({
             </div>
             <StatBarList
                 stats={stats}
-                vitals={vitals}
-                combat={combat}></StatBarList>
+                vitals={omitMaxVitals(vitals)}
+                combat={combat}
+            ></StatBarList>
         </div>
     );
 };

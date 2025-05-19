@@ -1,36 +1,41 @@
-import type { NonNegativeNumber } from './nonNegative';
+import type { NonNegativeNumber } from "./nonNegative";
 
 // 캐릭터 스탯
 export const STAT_TYPES = {
-    STR: 'str',
-    DEX: 'dex',
-    INT: 'int',
+    STR: "str",
+    DEX: "dex",
+    INT: "int",
 } as const;
 export type StatType = (typeof STAT_TYPES)[keyof typeof STAT_TYPES];
 
 // 생명력 관련 스탯
 export const VITAL_TYPES = {
-    HP: 'hp',
-    MAXHP: 'maxhp',
-    MP: 'mp',
-    MAXMP: 'maxmp',
+    HP: "hp",
+    MAXHP: "maxhp",
+    MP: "mp",
+    MAXMP: "maxmp",
 } as const;
 export type VitalType = (typeof VITAL_TYPES)[keyof typeof VITAL_TYPES];
 
+export type VitalWithoutMax = Omit<
+    Vitals,
+    typeof VITAL_TYPES.MAXHP | typeof VITAL_TYPES.MAXMP
+>;
+
 // 전투 관련 스탯
 export const COMBAT_STAT_TYPES = {
-    PAPK: 'papk',
-    MAPK: 'mapk',
-    DEF: 'def',
+    PAPK: "papk",
+    MAPK: "mapk",
+    DEF: "def",
 } as const;
 export type CombatStatType =
     (typeof COMBAT_STAT_TYPES)[keyof typeof COMBAT_STAT_TYPES];
 
 // 직업 정의
 export const JOBS = {
-    WARRIOR: 'warrior',
-    MAGE: 'mage',
-    ARCHER: 'archer',
+    WARRIOR: "warrior",
+    MAGE: "mage",
+    ARCHER: "archer",
 } as const;
 export type Job = (typeof JOBS)[keyof typeof JOBS];
 
@@ -82,7 +87,7 @@ export interface CharacterStore extends CharacterState {
     setCharacterInfo: (data: Partial<CharacterState>) => void;
     updateVitals: (data: Partial<Vitals>) => void;
     updateResources: (
-        data: Partial<Pick<CharacterState, 'gold' | 'exp'>>
+        data: Partial<Pick<CharacterState, "gold" | "exp">>
     ) => void;
     resetCharacter: () => void;
     updateStats: (data: Partial<Stat>) => void;
