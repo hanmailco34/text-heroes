@@ -1,20 +1,20 @@
-import { INITIAL_STATE } from '@/data/characterData';
+import { INITIAL_STATE } from "@/data/characterData";
 
 import {
     STAT_TYPES,
     VITAL_TYPES,
     type CharacterStore,
     type StatType,
-} from '@/types/characterTypes';
-import { assertNonNegative } from '@/types/nonNegative';
+} from "@/types/characterTypes";
+import { assertNonNegative } from "@/types/nonNegative";
 import {
-    calculateCombatStats,
     clampValue,
     updateResource,
     updateResources,
-} from '@/utils/characterUtils';
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+} from "@/utils/characterUtils";
+import { calculateCombatStats } from "@/utils/combatUtils";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 // 상수 정의
 const LEVEL_UP_STAT_POINTS = 5;
@@ -88,9 +88,9 @@ const useCharacterStore = create<CharacterStore>()(
                     const statKey = key as StatType;
                     if (statKey in STAT_TYPES) {
                         const change = data[statKey];
-                        if (typeof change === 'number' && change < 0) {
+                        if (typeof change === "number" && change < 0) {
                             throw new Error(
-                                '스탯은 음수로 감소시킬 수 없습니다.'
+                                "스탯은 음수로 감소시킬 수 없습니다."
                             );
                         }
                         totalIncrease += change ?? 0;
@@ -101,7 +101,7 @@ const useCharacterStore = create<CharacterStore>()(
                 }
 
                 if (state.statPoints < totalIncrease) {
-                    throw new Error('스탯 포인트가 부족합니다.');
+                    throw new Error("스탯 포인트가 부족합니다.");
                 }
 
                 set({
@@ -126,7 +126,7 @@ const useCharacterStore = create<CharacterStore>()(
             },
         }),
         {
-            name: 'character-storage',
+            name: "character-storage",
             partialize: (state) => ({
                 name: state.name,
                 job: state.job,
