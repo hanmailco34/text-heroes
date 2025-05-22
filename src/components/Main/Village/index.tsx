@@ -4,7 +4,7 @@ import { MENU_LABELS } from "@/data/menuData";
 import useCharacterStore from "@/store/characterStore";
 import type { VillageType } from "@/types/villageTypes";
 import { useNavigate } from "react-router-dom";
-import type { MenuType } from "@/types/mainTypes";
+import type { MenuType } from "@/types/menuTypes";
 import { getLabel } from "@/utils/objectUtils";
 
 interface VillageProps {
@@ -26,14 +26,16 @@ const Village: React.FC<VillageProps> = ({ village, onMenuChange }) => {
             <h1 className={styles.villageName}>{name}</h1>
             <p className={styles.villageDescription}>{description}</p>
             <div className={styles.menu}>
-                {getLabel(MENU_LABELS).map((menu) => (
-                    <button
-                        key={menu.key}
-                        onClick={() => onMenuChange(menu.key)}
-                    >
-                        {menu.label}
-                    </button>
-                ))}
+                {getLabel(MENU_LABELS).map((menu) => {
+                    return (
+                        <button
+                            key={menu.key}
+                            onClick={() => onMenuChange(menu.key)}
+                        >
+                            {menu.label}
+                        </button>
+                    );
+                })}
                 <div className={styles.travel}>
                     <p>다른 마을로 이동</p>
                     {connectedVillages?.map((villageId) => (

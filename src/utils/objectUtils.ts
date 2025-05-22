@@ -1,4 +1,4 @@
-import type { MenuItem } from "@/types/mainTypes";
+import type { MenuItem } from "@/types/menuTypes";
 
 export const getLabel = <T extends Record<string, string>>(
     labels: T

@@ -1,12 +1,132 @@
-@import url("https://fonts.googleapis.com/css2?family=VT323&display=swap");
+@import "tailwindcss";
+
+@font-face {
+    font-family: "NeoDungGeunMo";
+    src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.3/NeoDunggeunmo.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "VT323";
+    src: url("https://fonts.gstatic.com/s/vt323/v17/pxiKyp0ihIEF2isQFJXGdg.woff2")
+        format("woff2");
+    font-display: swap;
+}
+
+@theme {
+    --color-brand-green-light: #9ef49e;
+    --color-brand-green: #9ef49e;
+    --color-brand-green-medium: #7bb07b;
+    --color-brand-green-textdesc: #b0d6b0;
+    --color-brand-green-dark: #3a703a;
+    --color-brand-green-darker: #253825;
+
+    --color-brand-bg: #0a0f0a;
+    --color-brand-bg-content: #111811;
+    --color-text-shadow-color: #000;
+
+    --font-pixel: "NeoDungGeunMo", "VT323", sans-serif;
+    --font-neodgm: "NeoDungGeunMo", sans-serif;
+    --font-vt323: "VT323", monospace;
+
+    @keyframes flicker {
+        0%,
+        18%,
+        22%,
+        25%,
+        53%,
+        57%,
+        100% {
+            color: var(--color-brand-green-light, #9ef49e);
+            text-shadow: 0 0 4px var(--color-brand-green-light, #9ef49e),
+                0 0 11px var(--color-brand-green-light, #9ef49e),
+                0 0 19px var(--color-brand-green-light, #9ef49e),
+                0 0 40px var(--color-brand-green-dark, #3a703a),
+                0 0 80px var(--color-brand-green-dark, #3a703a),
+                0 0 90px var(--color-brand-green-dark, #3a703a),
+                0 0 100px var(--color-brand-green-dark, #3a703a),
+                0 0 150px var(--color-brand-green-dark, #3a703a);
+        }
+
+        20%,
+        24%,
+        55% {
+            color: var(--color-brand-green-medium, #7bb07b);
+            text-shadow: none;
+        }
+    }
+
+    @keyframes loading-bar-animation {
+        0% {
+            background-position: 0 0;
+        }
+        100% {
+            background-position: 28px 0;
+        }
+    }
+
+    @keyframes retro-flicker {
+        0%,
+        100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.7;
+        }
+    }
+}
+
+@layer utilities {
+    .font-pixel {
+        font-family: var(--font-pixel);
+    }
+    .font-neodgm {
+        font-family: var(--font-neodgm);
+    }
+    .font-pressstart {
+        font-family: var(--font-pressstart);
+    }
+    .font-vt323 {
+        font-family: var(--font-vt323);
+    }
+
+    .shadow-retro-glow {
+        box-shadow: 0 0 15px rgba(158, 244, 158, 0.5);
+    }
+
+    .animate-flicker {
+        animation: flicker 1.5s infinite alternate;
+    }
+    .animate-loading-bar {
+        animation: loading-bar-animation 1s linear infinite;
+    }
+    .animate-flicker-slow {
+        animation: retro-flicker 1.5s infinite steps(2, jump-none);
+    }
+    .animate-flicker-fast {
+        animation: retro-flicker 0.3s infinite steps(2, jump-none);
+    }
+}
+
+.text-shadow {
+    text-shadow: 2px 2px var(--color-text-shadow-color);
+}
+
+.loading-bar-stripes {
+    background-image: repeating-linear-gradient(
+        -45deg,
+        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.15) 10px,
+        transparent 10px,
+        transparent 20px
+    );
+
+    animation: loading-bar-animation 1s linear infinite;
+}
 
 body {
-    background: #111;
-    color: #aaffaa;
-    font-family: "VT323", monospace, Consolas, "Courier New", monospace;
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    background-color: var(--color-brand-bg, #0a0f0a);
 }

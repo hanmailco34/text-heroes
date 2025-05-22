@@ -2,7 +2,7 @@ import useTypewriter from "@/hooks/useTypewriter";
 import useCharacterStore from "@/store/characterStore";
 import { JOBS, type CharacterStore } from "@/types/characterTypes";
 import styles from "@/styles/Container.module.css";
-import introStyles from "./GameIntro.module.css";
+//import introStyles from "./GameIntro.module.css";
 import { getCharacterIntroNarration } from "@/data/introData";
 import PressEnterButton from "../ui/PressEnterButton";
 import { useNavigate } from "react-router-dom";
@@ -31,7 +31,7 @@ const CharacterIntro: React.FC = () => {
 
     return (
         <div className={styles.container} onKeyDown={handleKeyDown}>
-            <div className={introStyles.story}>{typedText}</div>
+            <div>{typedText}</div>
             <PressEnterButton onClick={handleStart}>
                 &gt; 마을에 입장
             </PressEnterButton>

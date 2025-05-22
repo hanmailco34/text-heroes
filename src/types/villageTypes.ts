@@ -1,10 +1,19 @@
 import type { HuntingField } from "./huntingField";
+import type { Armor, Consumable, Material, Weapon } from "./itemTypes";
+
+export interface VillageShop {
+    weapon: Weapon[];
+    armor: Armor[];
+    consumable: Consumable[];
+    material: Material[];
+}
 
 export interface VillageType {
-    name: string; // 마을 이름
-    description: string; // 마을 설명/소개
+    name: string;
+    description: string;
     huntingFields?: HuntingField[];
     connectedVillages?: string[];
+    shop?: VillageShop;
     // weapons: Weapon[]; // 무기 상점 판매 무기
     // quests: Quest[]; // 마을 퀘스트 목록
     // npcs?: Npc[]; // 마을 NPC 목록 (촌장, 상인, 주민 등)

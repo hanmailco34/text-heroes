@@ -1,15 +1,14 @@
 import type { RouteObject } from "react-router-dom";
-import GameIntro from "@/components/Intro/GameIntro";
+import IntroPage from "@/pages/IntroPage";
 import Login from "@/components/Login";
 import SignUp from "@/components/SignUp";
 import CharacterCreate from "@/components/CharacterCreate";
-import CharacterIntro from "@/components/Intro/CharacterIntro";
 import Main from "@/components/Main";
 
 const routes: RouteObject[] = [
     {
         path: "/",
-        element: <GameIntro></GameIntro>,
+        element: <IntroPage></IntroPage>,
     },
     {
         path: "/login",
@@ -22,10 +21,6 @@ const routes: RouteObject[] = [
     {
         path: "/character-create",
         element: <CharacterCreate></CharacterCreate>,
-    },
-    {
-        path: "/character-intro",
-        element: <CharacterIntro></CharacterIntro>,
     },
     {
         path: "/main",

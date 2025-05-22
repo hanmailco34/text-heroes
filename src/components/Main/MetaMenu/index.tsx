@@ -1,6 +1,6 @@
 import { META_MENU_LABELS } from "@/data/menuData";
 import styles from "./MetaMenu.module.css";
-import type { MetaMenuType } from "@/types/mainTypes";
+import type { MetaMenuType } from "@/types/menuTypes";
 import { getLabel } from "@/utils/objectUtils";
 
 const MetaMenu: React.FC = () => {
