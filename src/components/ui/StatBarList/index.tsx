@@ -1,43 +1,46 @@
-import styles from "./StatBarList.module.css";
 import {
     type Stat,
-    type CombatStat,
     type VitalWithoutMax,
+    type CombatStatType,
 } from "@/types/characterTypes";
-import { COMBAT_STAT_LABELS, STAT_LABELS, VITAL_LABELS } from "@/data/statData";
 import StatBarSection from "../StatBarSection";
+import {
+    DEFAULT_STAT_MAX_VALUES,
+    DEFAULT_VITAL_MAX_VALUES,
+    STAT_LABELS,
+    VITAL_LABELS,
+} from "@/data/statData";
 
 interface StatBarListProps {
     stats: Stat;
     vitals: VitalWithoutMax;
-    combat: CombatStat;
+    combat?: CombatStatType;
+    statMaxValues?: Partial<Record<keyof Stat, number>>;
+    vitalMaxValues?: Partial<Record<keyof VitalWithoutMax, number>>;
+    combatMaxValues?: Partial<Record<keyof CombatStatType, number>>;
 }
-
-const StatBarList: React.FC<StatBarListProps> = ({ stats, vitals, combat }) => {
-    const statMaxMap = { str: 15, dex: 15, int: 15 };
-    const vitalMaxMap = { hp: 150, mp: 150 };
-    const combatMaxMap = { papk: 60, mapk: 60, def: 60 };
-
+const StatBarList: React.FC<StatBarListProps> = ({
+    stats,
+    vitals,
+    statMaxValues = DEFAULT_STAT_MAX_VALUES,
+    vitalMaxValues = DEFAULT_VITAL_MAX_VALUES,
+}) => {
     return (
-        <div className={styles.statList}>
+        <div className="space-y-4">
             <StatBarSection
-                title="기본 능력치"
+                title="능력치"
                 data={stats}
                 labels={STAT_LABELS}
-                maxMap={statMaxMap}
-            ></StatBarSection>
+                maxValues={statMaxValues}
+                defaultMax={20}
+            />
             <StatBarSection
-                title="기본 HP&MP"
+                title="생명력 & 정신력"
                 data={vitals}
                 labels={VITAL_LABELS}
-                maxMap={vitalMaxMap}
-            ></StatBarSection>
-            <StatBarSection
-                title="기본 전투능력"
-                data={combat}
-                labels={COMBAT_STAT_LABELS}
-                maxMap={combatMaxMap}
-            ></StatBarSection>
+                maxValues={vitalMaxValues}
+                defaultMax={200}
+            />
         </div>
     );
 };

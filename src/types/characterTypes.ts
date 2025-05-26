@@ -64,7 +64,7 @@ export interface JobDescription {
     label: string;
     lore: string;
     features: string[];
-    initialVitals: Omit<Vitals, typeof VITAL_TYPES.HP | typeof VITAL_TYPES.MP>;
+    initialVitals: VitalWithoutMax;
     initialStats: Stat;
     initialCombat: CombatStats;
     targetRatio: Stat;

@@ -1,5 +1,7 @@
 import React from "react";
 import ProgressBar from "../ui/ProgressBar";
+import Panel from "../ui/Panel";
+import GameTitle from "../ui/GameTitle";
 
 interface GameIntroProps {
     typedText: string;
@@ -17,10 +19,8 @@ const GameIntro: React.FC<GameIntroProps> = ({
     return (
         <div className="relative flex size-full min-h-screen flex-col bg-brand-bg dark overflow-x-hidden font-pixel">
             <div className="flex h-full grow flex-col items-center justify-center p-4">
-                <div className="w-full max-w-2xl p-6 md:p-10 border-4 border-brand-green-dark bg-brand-bg-content shadow-retro-glow rounded-none">
-                    <h1 className="text-brand-green-light text-shadow text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-center pb-6 pt-4 animate-flicker">
-                        텍스트 히어로즈
-                    </h1>
+                <Panel className="w-full max-w-2xl">
+                    <GameTitle text="텍스트 히어로즈"></GameTitle>
                     <p className="text-brand-green-textdesc text-base sm:text-lg leading-relaxed pb-8 pt-2 px-4 text-center whitespace-pre-line">
                         {typedText}
                     </p>
@@ -49,7 +49,7 @@ const GameIntro: React.FC<GameIntroProps> = ({
                     <p className="text-brand-green-medium text-xs sm:text-sm font-normal leading-normal pt-6 px-4 text-center">
                         버전 {version}
                     </p>
-                </div>
+                </Panel>
             </div>
         </div>
     );

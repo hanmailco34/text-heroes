@@ -1,9 +1,11 @@
 import type { RouteObject } from "react-router-dom";
-import IntroPage from "@/pages/IntroPage";
-import Login from "@/components/Login";
-import SignUp from "@/components/SignUp";
-import CharacterCreate from "@/components/CharacterCreate";
+import IntroPage from "@/pages/Intro";
+import LoginPage from "@/pages/Login";
+import SignupPage from "@/pages/Signup";
+import CharacterCreationPage from "@/pages/CharacterCreation";
+//import CharacterCreate from "@/components/CharacterCreate";
 import Main from "@/components/Main";
+import MainLayout from "@/components/layout/Main";
 
 const routes: RouteObject[] = [
     {
@@ -12,15 +14,27 @@ const routes: RouteObject[] = [
     },
     {
         path: "/login",
-        element: <Login></Login>,
+        element: (
+            <MainLayout>
+                <LoginPage></LoginPage>
+            </MainLayout>
+        ),
     },
     {
         path: "/signup",
-        element: <SignUp></SignUp>,
+        element: (
+            <MainLayout>
+                <SignupPage></SignupPage>
+            </MainLayout>
+        ),
     },
     {
-        path: "/character-create",
-        element: <CharacterCreate></CharacterCreate>,
+        path: "/character-creation",
+        element: (
+            <MainLayout>
+                <CharacterCreationPage></CharacterCreationPage>
+            </MainLayout>
+        ),
     },
     {
         path: "/main",
