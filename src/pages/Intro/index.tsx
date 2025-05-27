@@ -1,4 +1,4 @@
-import GameIntro from "@/components/Intro/GameIntro";
+import GameIntro from "@/components/intro/GameIntro";
 import { getGameIntroNarration } from "@/data/introData";
 import useTypewriter from "@/hooks/useTypewriter";
 import { animateProgress } from "@/utils";

@@ -72,6 +72,7 @@ export interface JobDescription {
 
 // 캐릭터 상태 정의
 export interface CharacterState {
+    id: string | null;
     name: string | null;
     job: Job | null;
     stats: Stat;

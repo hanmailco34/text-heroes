@@ -5,7 +5,9 @@ export const clampValue = (
     value: number,
     min: number,
     max: number
-): NonNegativeNumber => assertNonNegative(Math.min(Math.max(min, value), max));
+): NonNegativeNumber => {
+    return assertNonNegative(Math.min(Math.max(min, value), max));
+};
 
 export const updateResource = (
     vitals: Vitals,

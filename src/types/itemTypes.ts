@@ -1,6 +1,11 @@
 import type { NonNegativeNumber } from "./nonNegative";
 
-type ItemType = "weapon" | "armor" | "accessory" | "consumable" | "material";
+export type ItemType =
+    | "weapon"
+    | "armor"
+    | "accessory"
+    | "consumable"
+    | "material";
 type ItemRarity = "common" | "uncommon" | "rare" | "epic" | "legendary";
 type WeaponType =
     | "sword"
@@ -91,3 +96,5 @@ export interface Material extends BaseItem<"material"> {
     tier: 1 | 2 | 3 | 4 | 5;
     isEnhancementMaterial: boolean;
 }
+
+export type PurchasableItem = Weapon | Armor | Consumable | Material;

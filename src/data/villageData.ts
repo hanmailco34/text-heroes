@@ -10,10 +10,14 @@ import {
     woodSword,
 } from "./item";
 
+export const greenForestVillageId = "greenForest";
+export const yellowForestVillageId = "yellowForest";
+
 const greenForest: VillageType = {
+    id: greenForestVillageId,
     name: "초록숲 마을",
     description: "푸른 나무가 우거진 마을입니다.",
-    connectedVillages: ["yellowForest"],
+    connectedVillages: [yellowForestVillageId],
     shop: {
         weapon: [woodSword, woodStaff, woodBow],
         armor: [clothArmor],
@@ -23,12 +27,13 @@ const greenForest: VillageType = {
 };
 
 const yellowForest: VillageType = {
+    id: yellowForestVillageId,
     name: "노랑숲 마을",
     description: "노랑 나무가 우거진 마을입니다.",
-    connectedVillages: ["greenForest"],
+    connectedVillages: [greenForestVillageId],
 };
 
 export const VILLAGES: { [key: string]: VillageType } = {
-    greenForest,
-    yellowForest,
+    [greenForestVillageId]: greenForest,
+    [yellowForestVillageId]: yellowForest,
 };

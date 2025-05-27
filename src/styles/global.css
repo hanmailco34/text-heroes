@@ -23,10 +23,16 @@
     --color-brand-green-textdesc: #b0d6b0;
     --color-brand-green-dark: #3a703a;
     --color-brand-green-darker: #253825;
+    --color-brand-green-border: #293829;
 
     --color-brand-bg: #0a0f0a;
     --color-brand-bg-content: #111811;
     --color-text-shadow-color: #000;
+
+    --color-hp: #ff4d4d;
+    --color-mp: #4d79ff;
+    --color-exp: #ffd700;
+    --color-empty-bar: #2a2a2a;
 
     --font-pixel: "NeoDungGeunMo", "VT323", sans-serif;
     --font-neodgm: "NeoDungGeunMo", sans-serif;
@@ -94,7 +100,7 @@
     }
 
     .shadow-retro-glow {
-        box-shadow: 0 0 15px rgba(158, 244, 158, 0.5);
+        box-shadow: 0 0 10px rgba(158, 244, 158, 0.5);
     }
 
     .animate-flicker {
@@ -125,6 +131,20 @@
     );
 
     animation: loading-bar-animation 1s linear infinite;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: var(--color-brand-green-darker, #253825);
+    border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: var(--color-brand-green-medium, #7bb07b);
 }
 
 body {

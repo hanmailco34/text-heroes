@@ -2,15 +2,16 @@ import GameTitle from "@/components/ui/GameTitle";
 import Input from "@/components/ui/Input";
 import Panel from "@/components/ui/Panel";
 import Select from "@/components/ui/Select";
-import { JOB_OPTIONS } from "@/data/jobData";
+import { JOB_METADATA, JOB_OPTIONS } from "@/data/jobData";
 import type { CharacterState, Job } from "@/types/characterTypes";
-import { useState, type FormEvent } from "react";
+import { useMemo, useState, type FormEvent } from "react";
 import CharacterStatsPreview from "./ChracterStatsPreview";
 import { useToast } from "@/components/ui/Toast";
 import Button from "@/components/ui/Button";
 import { fakeApi, type FakeApiRequestMap } from "@/utils/fakeApiUtils";
 import useCharacterStore from "@/store/characterStore";
 import { useNavigate } from "react-router-dom";
+import { calculateCombatStats } from "@/utils/combatUtils";
 
 interface FormErrors {
     characterName?: string;
@@ -28,6 +29,13 @@ const CharacterCreationForm: React.FC = () => {
     const { setCharacterInfo } = useCharacterStore();
     const toast = useToast();
     const navigate = useNavigate();
+
+    const currentJobMetadata = useMemo(() => {
+        if (selectedJob && JOB_METADATA[selectedJob]) {
+            return JOB_METADATA[selectedJob];
+        }
+        return null;
+    }, [selectedJob]);
 
     const handleJobChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
         const value = e.target.value;
@@ -73,7 +81,7 @@ const CharacterCreationForm: React.FC = () => {
 
         setIsSubmitting(true);
         if (validationResult.isValid) {
-            if (!selectedJob) {
+            if (!selectedJob || !currentJobMetadata) {
                 toast({
                     type: "error",
                     text: "내부 오류: 직업 정보가 유효하지 않습니다.",
@@ -91,13 +99,41 @@ const CharacterCreationForm: React.FC = () => {
                     "character/create",
                     characterData
                 );
+
+                const combatStats = calculateCombatStats(
+                    selectedJob,
+                    currentJobMetadata.initialStats
+                );
+
+                const newCharacterData: Partial<CharacterState> = {
+                    id: response.characterId,
+                    name: characterName,
+                    job: selectedJob,
+                    stats: currentJobMetadata.initialStats,
+                    vitals: {
+                        hp: currentJobMetadata.initialVitals.hp,
+                        maxhp: currentJobMetadata.initialVitals.hp,
+                        mp: currentJobMetadata.initialVitals.mp,
+                        maxmp: currentJobMetadata.initialVitals.mp,
+                    },
+                    combat: combatStats,
+                    level: 1,
+                    statPoints: 1,
+                    exp: { current: 0, max: 100 },
+                    gold: 0,
+                };
+
+                setCharacterInfo(newCharacterData);
+
                 toast({
                     type: "success",
-                    text: `${response.characterId} 캐릭터가 성공적으로 생성되었습니다!`,
+                    text: `${characterName} 캐릭터가 성공적으로 생성되었습니다!`,
                 });
 
                 setCharacterName("");
                 setSelectedJob(null);
+
+                navigate("/main");
             } catch (error) {
                 toast({
                     type: "error",
@@ -162,7 +198,7 @@ const CharacterCreationForm: React.FC = () => {
 
                 <div className="md:w-1/2 mt-8 md:mt-0">
                     <CharacterStatsPreview
-                        job={selectedJob}
+                        selectedJobMetadata={currentJobMetadata}
                     ></CharacterStatsPreview>
                 </div>
             </div>

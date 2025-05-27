@@ -41,18 +41,22 @@ const useCharacterStore = create<CharacterStore>()(
                                   [VITAL_TYPES.HP]: clampValue(
                                       data.vitals.hp ?? state.vitals.hp,
                                       0,
-                                      state.vitals.maxhp
+                                      state.vitals.maxhp === 0
+                                          ? data.vitals.maxhp
+                                          : state.vitals.maxhp
                                   ),
                                   [VITAL_TYPES.MP]: clampValue(
                                       data.vitals.mp ?? state.vitals.mp,
                                       0,
-                                      state.vitals.maxmp
+                                      state.vitals.maxmp === 0
+                                          ? data.vitals.maxmp
+                                          : state.vitals.maxmp
                                   ),
                               }
                             : state.vitals,
                         combat: state.job
                             ? calculateCombatStats(state.job, mergedStats)
-                            : state.combat,
+                            : data.combat,
                     };
                 }),
             updateVitals: (data) =>
@@ -130,6 +134,7 @@ const useCharacterStore = create<CharacterStore>()(
         {
             name: "character-storage",
             partialize: (state) => ({
+                id: state.id,
                 name: state.name,
                 job: state.job,
                 stats: state.stats,

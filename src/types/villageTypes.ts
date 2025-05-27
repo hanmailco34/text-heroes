@@ -6,9 +6,11 @@ export interface VillageShop {
     armor: Armor[];
     consumable: Consumable[];
     material: Material[];
+    blacksmith?: boolean;
 }
 
 export interface VillageType {
+    id: string;
     name: string;
     description: string;
     huntingFields?: HuntingField[];

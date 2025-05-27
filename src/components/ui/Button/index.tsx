@@ -32,7 +32,7 @@ const Button: React.FC<ButtonProps> = ({
     const classes = `${baseClasses} ${
         variantClasses[variant]
     } ${hoverTransformClasses} ${
-        props.disabled ? "opacity-50 cursor-not-allowed" : ""
+        props.disabled ? "opacity-50 cursor-not-allowed" : "cursor-pointer"
     } ${className}`;
 
     if (asLink && href) {

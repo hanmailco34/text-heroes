@@ -1,5 +1,6 @@
 import AuthForm from "@/features/auth/AuthForm";
 import useAuthStore from "@/store/authStore";
+import useCharacterStore from "@/store/characterStore";
 import type { LoginFormData } from "@/types/authTypes";
 import { fakeApi } from "@/utils/fakeApiUtils";
 import { useState } from "react";
@@ -10,6 +11,7 @@ const LoginPage: React.FC = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [apiError, setApiError] = useState<string | null>(null);
     const { login } = useAuthStore();
+    const characterId = useCharacterStore((state) => state.id);
 
     const handleLoginSubmit = async (formData: LoginFormData) => {
         setIsLoading(true);
@@ -17,7 +19,8 @@ const LoginPage: React.FC = () => {
         try {
             await fakeApi("auth/login", formData);
             login(formData.userId);
-            navigate("/main");
+            if (characterId) navigate("/main");
+            else navigate("/character-creation");
         } catch (error: unknown) {
             if (error instanceof Error) {
                 setApiError(error.message || "로그인 중 오류가 발생했습니다.");

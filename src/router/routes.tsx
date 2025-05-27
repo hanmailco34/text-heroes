@@ -3,8 +3,8 @@ import IntroPage from "@/pages/Intro";
 import LoginPage from "@/pages/Login";
 import SignupPage from "@/pages/Signup";
 import CharacterCreationPage from "@/pages/CharacterCreation";
-//import CharacterCreate from "@/components/CharacterCreate";
-import Main from "@/components/Main";
+import MainPage from "@/pages/Main";
+//import Main from "@/components/Main";
 import MainLayout from "@/components/layout/Main";
 
 const routes: RouteObject[] = [
@@ -38,7 +38,11 @@ const routes: RouteObject[] = [
     },
     {
         path: "/main",
-        element: <Main></Main>,
+        element: (
+            <MainLayout>
+                <MainPage></MainPage>
+            </MainLayout>
+        ),
     },
 ];
 

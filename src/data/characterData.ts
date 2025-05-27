@@ -8,6 +8,7 @@ import { assertNonNegative } from "@/types/nonNegative";
 
 // 초기 상태 정의
 export const INITIAL_STATE: CharacterState = {
+    id: null,
     name: null,
     job: null,
     stats: {
