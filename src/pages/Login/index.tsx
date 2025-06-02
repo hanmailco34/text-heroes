@@ -2,7 +2,7 @@ import AuthForm from "@/features/auth/AuthForm";
 import useAuthStore from "@/store/authStore";
 import useCharacterStore from "@/store/characterStore";
 import type { LoginFormData } from "@/types/authTypes";
-import { fakeApi } from "@/utils/fakeApiUtils";
+import { fakeApi } from "@/utils";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 

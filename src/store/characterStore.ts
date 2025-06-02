@@ -1,4 +1,4 @@
-import { INITIAL_STATE } from "@/data/characterData";
+import { INITIAL_STATE } from "@/constants/character";
 
 import {
     STAT_TYPES,
@@ -7,12 +7,8 @@ import {
     type StatType,
 } from "@/types/characterTypes";
 import { assertNonNegative } from "@/types/nonNegative";
-import {
-    clampValue,
-    updateResource,
-    updateResources,
-} from "@/utils/characterUtils";
-import { calculateCombatStats } from "@/utils/combatUtils";
+import { clampValue, updateResource, updateResources } from "@/utils";
+import { calculateCombatStats } from "@/utils";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 

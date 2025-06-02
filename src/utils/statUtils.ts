@@ -30,7 +30,6 @@ export const distributeIncrementally = (
     pointsToAdd: number,
     targetRatio: Stat
 ): Stat => {
-    // 입력 검증
     if (pointsToAdd < 0) throw new Error("포인트는 음수로 올 수 없습니다.");
     const ratioSum = Object.values(targetRatio).reduce(
         (sum, value) => sum + value,

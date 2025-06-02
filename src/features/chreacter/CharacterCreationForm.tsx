@@ -2,16 +2,16 @@ import GameTitle from "@/components/ui/GameTitle";
 import Input from "@/components/ui/Input";
 import Panel from "@/components/ui/Panel";
 import Select from "@/components/ui/Select";
-import { JOB_METADATA, JOB_OPTIONS } from "@/data/jobData";
+import { JOB_METADATA, JOB_OPTIONS } from "@/data/job";
 import type { CharacterState, Job } from "@/types/characterTypes";
 import { useMemo, useState, type FormEvent } from "react";
 import CharacterStatsPreview from "./ChracterStatsPreview";
 import { useToast } from "@/components/ui/Toast";
 import Button from "@/components/ui/Button";
-import { fakeApi, type FakeApiRequestMap } from "@/utils/fakeApiUtils";
+import { fakeApi, type FakeApiRequestMap } from "@/utils";
 import useCharacterStore from "@/store/characterStore";
 import { useNavigate } from "react-router-dom";
-import { calculateCombatStats } from "@/utils/combatUtils";
+import { calculateCombatStats } from "@/utils";
 
 interface FormErrors {
     characterName?: string;

@@ -1,7 +1,7 @@
 import Panel from "@/components/ui/Panel";
 import StatBar from "@/components/ui/StatBar";
 import { useToast } from "@/components/ui/Toast";
-import { JOB_METADATA } from "@/data/jobData";
+import { JOB_METADATA } from "@/data/job";
 import useCharacterStore from "@/store/characterStore";
 
 const CharacterStatusPanel: React.FC = () => {

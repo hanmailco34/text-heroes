@@ -5,14 +5,14 @@ import useCharacterStore from "@/store/characterStore";
 import { useToast } from "@/components/ui/Toast";
 import { STAT_TYPES, type Stat, type StatType } from "@/types/characterTypes";
 import { assertNonNegative } from "@/types/nonNegative";
-import { JOB_METADATA } from "@/data/jobData";
-import { STAT_LABELS } from "@/data/statData";
+import { JOB_METADATA } from "@/data/job";
+import { STAT_LABELS } from "@/constants/stats";
 import {
     distributeIncrementally,
     extractCurrentStats,
     getStatData,
     initializeEmptyStat,
-} from "@/utils/statUtils";
+} from "@/utils";
 
 const StatPoup: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     const store = useCharacterStore.getState();

@@ -1,5 +1,5 @@
 import GameIntro from "@/components/intro/GameIntro";
-import { getGameIntroNarration } from "@/data/introData";
+import { getGameIntroNarration } from "@/data/intro";
 import useTypewriter from "@/hooks/useTypewriter";
 import { animateProgress } from "@/utils";
 import React, { useEffect, useState } from "react";

@@ -9,7 +9,7 @@ import {
     DEFAULT_VITAL_MAX_VALUES,
     STAT_LABELS,
     VITAL_LABELS,
-} from "@/data/statData";
+} from "@/constants/stats";
 
 interface StatBarListProps {
     stats: Stat;

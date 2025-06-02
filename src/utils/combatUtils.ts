@@ -1,4 +1,4 @@
-import { JOB_METADATA } from "@/data/jobData";
+import { JOB_METADATA } from "@/data/job";
 import {
     COMBAT_STAT_TYPES,
     JOBS,
